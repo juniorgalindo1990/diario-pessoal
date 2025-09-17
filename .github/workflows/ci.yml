@@ -78,11 +78,14 @@ jobs:
 
       - name: SonarCloud Scan for Backend
         uses: SonarSource/sonarqube-scan-action@v3
-        with:
-          projectBaseDir: backend/
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          projectBaseDir: backend
+          args: >
+            -Dsonar.organization=diario-pessoal
+            -Dsonar.projectKey=diario-pessoal
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v4
